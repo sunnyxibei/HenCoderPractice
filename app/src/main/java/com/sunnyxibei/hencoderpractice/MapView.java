@@ -1,18 +1,19 @@
 package com.sunnyxibei.hencoderpractice;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 /**
  * 整个动画拆分成了三部分
- *
+ * <p>
  * Created by jiayuanbin on 2017-9-23.
  */
 
@@ -40,7 +41,11 @@ public class MapView extends View {
     public MapView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MapView);
+        BitmapDrawable drawable = (BitmapDrawable) a.getDrawable(R.styleable.MapView_mv_background);
+        a.recycle();
+
+        bitmap = drawable.getBitmap();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         camera = new Camera();
     }
@@ -124,4 +129,10 @@ public class MapView extends View {
         this.degreeZ = degreeZ;
         invalidate();
     }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+        invalidate();
+    }
+
 }
