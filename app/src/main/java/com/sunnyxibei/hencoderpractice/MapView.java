@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 /**
@@ -48,6 +49,10 @@ public class MapView extends View {
         bitmap = drawable.getBitmap();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         camera = new Camera();
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float newZ = - displayMetrics.density * 6;
+        camera.setLocation(0, 0, newZ);
     }
 
     @Override

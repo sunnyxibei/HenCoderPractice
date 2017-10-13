@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 mapView.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.google_map));
                 break;
             case R.id.flip_board:
-                mapView.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fl_app_icon));
+                mapView.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.flip_board));
                 break;
         }
         return super.onOptionsItemSelected(item);

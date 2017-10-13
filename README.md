@@ -2,7 +2,7 @@
 
 HenCoder 三维旋转动效的实现
 
-![Alt text](/jpg/anim.gif)
+![Alt text](/jpg/flipboard.gif)
 
 >这是凯哥在 HenCoder 讲解几何变换章节提到的一个动画栗子，很炫酷，极大地激发了偶的好奇心。正好这个周末手头没啥事儿，研究了一下实现。
 
