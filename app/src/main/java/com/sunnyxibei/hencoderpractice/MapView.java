@@ -3,10 +3,12 @@ package com.sunnyxibei.hencoderpractice;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -46,12 +48,16 @@ public class MapView extends View {
         BitmapDrawable drawable = (BitmapDrawable) a.getDrawable(R.styleable.MapView_mv_background);
         a.recycle();
 
-        bitmap = drawable.getBitmap();
+        if (drawable != null) {
+            bitmap = drawable.getBitmap();
+        } else {
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.flip_board);
+        }
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         camera = new Camera();
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float newZ = - displayMetrics.density * 6;
+        float newZ = -displayMetrics.density * 6;
         camera.setLocation(0, 0, newZ);
     }
 
@@ -108,28 +114,19 @@ public class MapView extends View {
         degreeZ = 0;
     }
 
-    public float getFixDegreeY() {
-        return fixDegreeY;
-    }
-
+    @Keep
     public void setFixDegreeY(float fixDegreeY) {
         this.fixDegreeY = fixDegreeY;
         invalidate();
     }
 
-    public float getDegreeY() {
-        return degreeY;
-    }
-
+    @Keep
     public void setDegreeY(float degreeY) {
         this.degreeY = degreeY;
         invalidate();
     }
 
-    public float getDegreeZ() {
-        return degreeZ;
-    }
-
+    @Keep
     public void setDegreeZ(float degreeZ) {
         this.degreeZ = degreeZ;
         invalidate();
